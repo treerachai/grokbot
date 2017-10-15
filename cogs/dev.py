@@ -257,6 +257,16 @@ class Developer:
         if ctx.author.id in dev_list:
             await ctx.send(content)
 
+    @commands.command()
+    async def sayd(self, ctx, *, content):
+        '''Repeats your message after deleting it'''
+        if ctx.author.id in dev_list:
+            try:
+                await ctx.message.delete()
+            except discord.Forbidden:
+                pass
+            await ctx.send(content)
+
 
 def setup(bot):
     return bot.add_cog(Developer(bot))
